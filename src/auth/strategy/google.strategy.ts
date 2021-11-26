@@ -4,7 +4,7 @@ import { Strategy, VerifyCallback } from 'passport-google-oauth20'
 import { ConfigService } from '@nestjs/config'
 
 import { IPayload, SOCIAL_NETWORKS } from '../interfaces'
-import { UserEntity } from '../../users/user.entity'
+import { UserEntity } from '../../users/entities/user.entity'
 import { UserService } from '../../users/user.service'
 import { AuthService } from '../services/auth.service'
 

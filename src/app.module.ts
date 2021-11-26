@@ -16,7 +16,7 @@ import { OrderModule } from './order/order.module'
       useClass: DbConfigService,
       inject: [DbConfigService],
     }),
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '../.env' }),
     GraphQLModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

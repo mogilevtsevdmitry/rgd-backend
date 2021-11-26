@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 
 import { UserService } from '../../users/user.service'
 import { AuthHelper } from '../auth.helper'
-import { UserEntity } from '../../users/user.entity'
+import { UserEntity } from '../../users/entities/user.entity'
 import { IPayload } from '../interfaces'
 import { TokensInput } from '../inputs/tokens.input'
 import { UserInput } from '../../users/user.input'

@@ -14,6 +14,40 @@ type Mutation {
   removeUser(id: Float!): UserEntity!
 }
 
+type OrderEntity {
+  createdAt: DateTime!
+  id: ID!
+  orderServiceTypeEntity: [OrderServiceTypeEntity!]
+  orderStatusEntity: OrderStatusEntity
+  orderTransportationTypeEntity: OrderTransportationTypeEntity
+  path: String!
+  price: Float!
+  qualityOfSeats: Float!
+  rating: Float!
+  transportEntity: TransportEntity!
+  updatedAt: DateTime!
+  userEntity: UserEntity
+}
+
+type OrderServiceTypeEntity {
+  id: ID!
+  orderEntities: [OrderEntity!]!
+  type: String!
+}
+
+type OrderStatusEntity {
+  color: String!
+  id: ID!
+  orderEntities: [OrderEntity!]!
+  type: String!
+}
+
+type OrderTransportationTypeEntity {
+  id: ID!
+  orderEntities: [OrderEntity!]!
+  type: String!
+}
+
 type Query {
   getAllUsers: [UserEntity!]!
   updateToken: TokensInput!
@@ -36,6 +70,117 @@ type TokensInput {
   refreshToken: Token!
 }
 
+type TransportBodyTypesEntity {
+  id: ID!
+  transportEntities: [TransportEntity!]!
+  type: String!
+}
+
+type TransportClassEntity {
+  class: String!
+  id: ID!
+  transportEntities: [TransportEntity!]!
+}
+
+type TransportCommentEntity {
+  comment: String!
+  createdAt: DateTime!
+  id: ID!
+  rating: Float!
+  transportEntity: TransportEntity!
+  updatedAt: DateTime!
+  userEntity: UserEntity!
+}
+
+type TransportDescriptionEntity {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  photo: String
+  rating: Float
+  transportEntity: TransportEntity!
+  updatedAt: DateTime!
+}
+
+type TransportEngineEntity {
+  engine: String!
+  id: ID!
+  transportEntities: [TransportEntity!]!
+}
+
+type TransportEntity {
+  avg_fuel_consumption: Float
+  body_typeId: TransportBodyTypesEntity
+  capacity: Float
+  classId: TransportClassEntity
+  clearance: Float
+  createdAt: DateTime!
+  gos_number: Float!
+  height: Float
+  id: ID!
+  length: Float
+  max_speed: Float
+  modification: String!
+  orderEntities: [OrderEntity!]
+  quantity_of_seats: Float!
+  tank_capacity: Float
+  transportCommentEntities: [TransportCommentEntity!]!
+  transportDescriptionEntity: TransportDescriptionEntity!
+  transportEngineEntity: TransportEngineEntity
+  transportLayoutEntity: TransportLayoutEntity
+  transportOilTypeEntity: TransportOilTypeEntity
+  transportScheduleEntities: [TransportScheduleEntity!]!
+  transportStatusesEntity: TransportStatusesEntity!
+  transportTransmissionEntity: TransportTransmissionEntity
+  transportWheelFormulaEntity: TransportWheelFormulaEntity
+  updatedAt: DateTime!
+  weight: Float
+  wheelbase: Float
+  width: Float
+  year: Float!
+}
+
+type TransportLayoutEntity {
+  id: ID!
+  layout: String!
+  transportEntities: [TransportEntity!]!
+}
+
+type TransportOilTypeEntity {
+  id: ID!
+  oil: String!
+  transportEntities: [TransportEntity!]!
+}
+
+type TransportScheduleEntity {
+  createdAt: DateTime!
+  dateFor: DateTime!
+  dateTo: DateTime!
+  id: ID!
+  transportEntity: TransportEntity!
+  updatedAt: DateTime!
+  userEntity: UserEntity!
+}
+
+type TransportStatusesEntity {
+  color: String!
+  id: ID!
+  status: String!
+  transportEntities: [TransportEntity!]!
+}
+
+type TransportTransmissionEntity {
+  id: ID!
+  transmission: String!
+  transportEntities: [TransportEntity!]!
+}
+
+type TransportWheelFormulaEntity {
+  id: ID!
+  title: String!
+  transportEntities: [TransportEntity!]!
+}
+
 type UserEntity {
   activateHash: String
   createdAt: DateTime!
@@ -45,10 +190,15 @@ type UserEntity {
   id: ID!
   isActivated: Boolean!
   lastName: String
+  orderEntities: [OrderEntity!]!
   password: String
   phone: String
   photo: String
+  roles: String
+  sex: String
   token: [RefreshTokenEntity!]
+  transportCommentEntities: [TransportCommentEntity!]!
+  transportScheduleEntities: [TransportScheduleEntity!]!
   updatedAt: DateTime!
 }
 

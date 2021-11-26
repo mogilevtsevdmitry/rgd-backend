@@ -1,24 +1,24 @@
 import { Column, Entity, OneToMany } from 'typeorm'
 import { Field, ObjectType } from '@nestjs/graphql'
 
-import { BaseEntity } from '../base/base.entity'
-import { RefreshTokenEntity } from '../auth/refresh-token.entity'
-import { SOCIAL_NETWORKS } from '../auth/interfaces'
-import { OrderEntity } from '../order/entities/order.entity'
-import { TransportCommentEntity } from '../transport/entities/transport-comment.entity'
-import { TransportScheduleEntity } from '../transport/entities/transport-schedule.entity'
+import { BaseEntity } from '../../base/base.entity'
+import { RefreshTokenEntity } from '../../auth/refresh-token.entity'
+import { SOCIAL_NETWORKS } from '../../auth/interfaces'
+import { OrderEntity } from '../../order/entities/order.entity'
+import { TransportCommentEntity } from '../../transport/entities/transport-comment.entity'
+import { TransportScheduleEntity } from '../../transport/entities/transport-schedule.entity'
 
-enum SEX {
-  MALE = 'male',
-  FEMALE = 'female',
+export enum SEX {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
 }
 
-enum ROLE {
-  SUPERADMIN = 'super admin',
-  ADMIN = 'admin',
-  USER = 'user',
-  OPERATOR = 'operator',
-  AUTSORCER = 'autsorcer',
+export enum ROLE {
+  SUPERADMIN = 'SUPERADMIN',
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  OPERATOR = 'OPERATOR',
+  AUTSORCER = 'AUTSORCER',
 }
 
 /**
@@ -94,8 +94,20 @@ export class UserEntity extends BaseEntity {
    * Пол пользователя
    */
   @Field({ nullable: true, defaultValue: null })
-  @Column('enum', { nullable: true, name: 'sex', enum: SEX })
-  sex: string
+  @Column('enum', { nullable: true, enum: SEX })
+  sex: SEX
+
+  /**
+   * role пользователя
+   * @default user
+   */
+  @Field({ nullable: true, defaultValue: ROLE.USER })
+  @Column('enum', {
+    nullable: true,
+    enum: ROLE,
+    default: ROLE.USER,
+  })
+  roles: ROLE
 
   /**
    * refresh токен - для проверки и генерации новой пары токенов
@@ -103,19 +115,6 @@ export class UserEntity extends BaseEntity {
   @Field(() => [RefreshTokenEntity], { nullable: true })
   @OneToMany(() => RefreshTokenEntity, (token) => token.token)
   token: RefreshTokenEntity[]
-
-  /**
-   * role пользователя
-   * @default user
-   */
-  @Field({ nullable: false })
-  @Column('enum', {
-    nullable: false,
-    array: true,
-    default: [ROLE.USER],
-    enum: ROLE,
-  })
-  role: ROLE[]
 
   /**
    * заявка

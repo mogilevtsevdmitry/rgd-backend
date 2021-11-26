@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config'
 
 import { AuthService } from './services/auth.service'
 import { Token, TokensInput } from './inputs/tokens.input'
-import { UserEntity } from '../users/user.entity'
+import { UserEntity } from '../users/entities/user.entity'
 import { UserInput } from '../users/user.input'
 
 @Resolver('Auth')

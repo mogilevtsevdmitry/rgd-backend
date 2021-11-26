@@ -2,7 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql'
 import { Column, Entity, Index, ManyToOne } from 'typeorm'
 import { BaseEntity } from '../../base/base.entity'
 import { OrderStatusEntity } from './order-status.entity'
-import { UserEntity } from '../../users/user.entity'
+import { UserEntity } from '../../users/entities/user.entity'
 import { OrderTransportationTypeEntity } from './order-transportation-type.entity'
 import { OrderServiceTypeEntity } from './order-service-type.entity'
 import { TransportEntity } from '../../transport/entities/transport.entity'
@@ -20,8 +20,8 @@ export class OrderEntity extends BaseEntity {
 
   @Field({ nullable: false })
   @Index({ spatial: true })
-  @Column('point', { array: true })
-  path: string[]
+  @Column('point')
+  path: string
 
   @Field({ nullable: false })
   @Column('float', { nullable: false })
