@@ -24,7 +24,6 @@ export class OrderStatusResolver {
     @Args('updateOrderStatusInput')
     updateOrderStatusInput: UpdateOrderStatusInput,
   ): Promise<OrderStatusEntity> {
-    console.log('resolver', updateOrderStatusInput)
     return await this.service.update(updateOrderStatusInput)
   }
 

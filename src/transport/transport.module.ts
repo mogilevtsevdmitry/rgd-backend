@@ -16,6 +16,8 @@ import { TransportService } from './services/transport.service'
 import { TransportResolver } from './resolvers/transport.resolver'
 import { TransportBodyTypeService } from './services/transport-body-type.service'
 import { TransportBodyTypeResolver } from './resolvers/transport-body-type.resolver'
+import { TransportClassService } from './services/transport-class.service'
+import { TransportClassResolver } from './resolvers/transport-class.resolver'
 
 @Module({
   imports: [
@@ -39,6 +41,8 @@ import { TransportBodyTypeResolver } from './resolvers/transport-body-type.resol
     TransportResolver,
     TransportBodyTypeService,
     TransportBodyTypeResolver,
+    TransportClassService,
+    TransportClassResolver,
   ],
 })
 export class TransportModule {}

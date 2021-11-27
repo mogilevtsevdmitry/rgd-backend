@@ -24,7 +24,6 @@ export class TransportBodyTypeResolver {
     @Args('updateTransportInput')
     updateTransportInput: UpdateTransportBodyTypeInput,
   ): Promise<TransportBodyTypesEntity> {
-    console.log('resolver', updateTransportInput)
     return await this.service.update(updateTransportInput)
   }
 

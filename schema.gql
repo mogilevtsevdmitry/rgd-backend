@@ -30,6 +30,10 @@ input CreateTransportBodyTypeInput {
   type: String!
 }
 
+input CreateTransportClassInput {
+  class: String!
+}
+
 input CreateTransportInput {
   avgFuelConsumption: Float
   capacity: Float
@@ -76,6 +80,7 @@ type Mutation {
   createOrderStatusEntity(createOrderStatusInput: CreateOrderStatusInput!): OrderStatusEntity!
   createOrderTransportationTypeEntity(type: String!): OrderTransportationTypeEntity!
   createTransportBodyTypeEntity(createTransportInput: CreateTransportBodyTypeInput!): TransportBodyTypesEntity!
+  createTransportClassEntity(createTransportClassInput: CreateTransportClassInput!): TransportClassEntity!
   createTransportEntity(createTransportInput: CreateTransportInput!): TransportEntity!
   createUser(user: UserInput!): UserEntity!
   login(user: UserInput!): TokensInput!
@@ -85,6 +90,7 @@ type Mutation {
   removeOrderStatusEntity(id: Float!): OrderStatusEntity!
   removeOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
   removeTransportBodyTypeEntity(id: Float!): TransportBodyTypesEntity!
+  removeTransportClassEntity(id: Float!): TransportClassEntity!
   removeTransportEntity(id: Float!): TransportEntity!
   removeUser(id: Float!): UserEntity!
   updateOrderEntity(updateOrderInput: UpdateOrderInput!): OrderEntity!
@@ -92,6 +98,7 @@ type Mutation {
   updateOrderStatusEntity(updateOrderStatusInput: UpdateOrderStatusInput!): OrderStatusEntity!
   updateOrderTransportationTypeEntity(updateOrderTransportationTypeInput: UpdateOrderTransportationTypeInput!): OrderTransportationTypeEntity!
   updateTransportBodyTypeEntity(updateTransportInput: UpdateTransportBodyTypeInput!): TransportBodyTypesEntity!
+  updateTransportClassEntity(updateTransportClassInput: UpdateTransportClassInput!): TransportClassEntity!
   updateTransportEntity(updateTransportInput: UpdateTransportInput!): TransportEntity!
 }
 
@@ -135,6 +142,7 @@ type Query {
   getAllOrderStatusEntity: [OrderStatusEntity!]!
   getAllOrderTransportationTypeEntity: [OrderTransportationTypeEntity!]!
   getAllTransportBodyTypeEntity: [TransportBodyTypesEntity!]!
+  getAllTransportClassEntity: [TransportClassEntity!]!
   getAllTransportEntity: [TransportEntity!]!
   getAllUsers: [UserEntity!]!
   getOneOrderEntity(id: Float!): OrderEntity!
@@ -142,6 +150,7 @@ type Query {
   getOneOrderStatusEntity(id: Float!): OrderStatusEntity!
   getOneOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
   getOneTransportBodyTypeEntity(id: Float!): TransportBodyTypesEntity!
+  getOneTransportClassEntity(id: Float!): TransportClassEntity!
   getOneTransportEntity(id: Float!): TransportEntity!
   updateToken: TokensInput!
   whoAmI: UserEntity!
@@ -308,6 +317,11 @@ input UpdateOrderTransportationTypeInput {
 input UpdateTransportBodyTypeInput {
   id: ID!
   type: String!
+}
+
+input UpdateTransportClassInput {
+  class: String!
+  id: ID!
 }
 
 input UpdateTransportInput {

@@ -24,7 +24,6 @@ export class TransportResolver {
     @Args('updateTransportInput')
     updateTransportInput: UpdateTransportInput,
   ): Promise<TransportEntity> {
-    console.log('resolver', updateTransportInput)
     return await this.service.update(updateTransportInput)
   }
 
