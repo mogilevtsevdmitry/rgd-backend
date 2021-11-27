@@ -6,8 +6,8 @@ import { TransportEntity } from './transport.entity'
 @ObjectType()
 @Entity('transport_description')
 export class TransportDescriptionEntity extends BaseEntity {
-  @Field({ nullable: true })
-  @Column({ nullable: true })
+  @Field({ nullable: false })
+  @Column({ nullable: false })
   description: string
 
   @Field({ nullable: true })
@@ -15,13 +15,13 @@ export class TransportDescriptionEntity extends BaseEntity {
   photo: string
 
   @Field({ nullable: true })
-  @Column({ nullable: true, type: 'float' })
+  @Column('float', { nullable: true, default: 5 })
   rating: number
 
-  @Field(() => TransportEntity, { nullable: false })
+  @Field(() => TransportEntity, { nullable: true })
   @OneToOne(
     () => TransportEntity,
     (transportEntity) => transportEntity.transportDescriptionEntity,
   )
-  transportEntity: TransportEntity
+  transportEntity?: TransportEntity
 }

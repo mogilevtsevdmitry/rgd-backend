@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { TransportModule } from '../transport/transport.module'
 import { OrderEntity } from './entities/order.entity'
 import { OrderServiceTypeEntity } from './entities/order-service-type.entity'
 import { OrderStatusEntity } from './entities/order-status.entity'
@@ -14,7 +15,6 @@ import { OrderService } from './services/order.service'
 import { OrderResolver } from './resolvers/order.resolver'
 import { LocationEntity } from './entities/location.entity'
 import { LocationService } from './services/location.service'
-import { TransportModule } from '../transport/transport.module'
 
 @Module({
   imports: [
@@ -28,15 +28,15 @@ import { TransportModule } from '../transport/transport.module'
     ]),
   ],
   providers: [
+    OrderService,
+    LocationService,
     OrderServiceTypeService,
     OrderStatusService,
     OrderTransportationTypeService,
-    OrderService,
     OrderServiceTypeResolver,
     OrderStatusResolver,
     OrderTransportationTypeResolver,
     OrderResolver,
-    LocationService,
   ],
 })
 export class OrderModule {}

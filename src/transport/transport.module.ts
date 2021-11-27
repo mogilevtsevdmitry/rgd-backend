@@ -21,10 +21,14 @@ import { TransportClassResolver } from './resolvers/transport-class.resolver'
 import { TransportCommentService } from './services/transport-comment.service'
 import { TransportCommentResolver } from './resolvers/transport-comment.resolver'
 import { UserModule } from '../users/user.module'
+import { FilesModule } from '../files/files.module'
+import { TransportDescriptionService } from './services/transport-description.service'
+import { TransportDescriptionResolver } from './resolvers/transport-description.resolver'
 
 @Module({
   imports: [
     UserModule,
+    FilesModule,
     TypeOrmModule.forFeature([
       TransportEntity,
       TransportBodyTypesEntity,
@@ -49,6 +53,9 @@ import { UserModule } from '../users/user.module'
     TransportClassResolver,
     TransportCommentService,
     TransportCommentResolver,
+    TransportDescriptionService,
+    TransportDescriptionResolver,
   ],
+  exports: [TransportService],
 })
 export class TransportModule {}

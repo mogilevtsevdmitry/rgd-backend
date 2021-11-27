@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module'
 import { NodemailerModule } from './nodemailer/nodemailer.module'
 import { TransportModule } from './transport/transport.module'
 import { OrderModule } from './order/order.module'
+// import { FilesModule } from './files/files.module'
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { OrderModule } from './order/order.module'
     NodemailerModule,
     TransportModule,
     OrderModule,
+    // FilesModule,
   ],
   providers: [DbConfigService],
 })

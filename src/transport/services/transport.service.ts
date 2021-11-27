@@ -15,10 +15,48 @@ export class TransportService extends CrudOperation<TransportEntity> {
     super(repo)
   }
 
-  async create(
-    createTransportInput: CreateTransportInput,
-  ): Promise<TransportEntity> {
-    return await this.repo.save({ ...createTransportInput })
+  async create({
+    transportClassEntityId,
+    transportDescriptionEntityId,
+    transportLayoutEntityId,
+    transportTransmissionEntityId,
+    transportEngineEntityId,
+    transportStatusesEntityId,
+    transportScheduleEntitiesId,
+    transportOilTypeEntityId,
+    transportBodyTypesEntityId,
+    transportWheelFormulaEntityId,
+    avgFuelConsumption,
+    clearance,
+    gosNumber,
+    height,
+    length,
+    maxSpeed,
+    modification,
+    quantityOfSeats,
+    wheelbase,
+    tankCapacity,
+    capacity,
+    width,
+    year,
+    weight,
+  }: CreateTransportInput): Promise<TransportEntity> {
+    return await this.repo.save({
+      avgFuelConsumption,
+      clearance,
+      gosNumber,
+      height,
+      length,
+      maxSpeed,
+      modification,
+      quantityOfSeats,
+      wheelbase,
+      tankCapacity,
+      capacity,
+      width,
+      year,
+      weight,
+    })
   }
 
   async update(
