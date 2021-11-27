@@ -47,32 +47,32 @@ export class TransportEntity extends BaseEntity {
   weight: number
 
   @Field({ nullable: true })
-  @Column({ nullable: true })
-  tank_capacity: number
+  @Column({ nullable: true, name: 'tank_capacity' })
+  tankCapacity: number
 
   @Field({ nullable: true })
   @Column({ nullable: true })
   capacity: number
 
   @Field({ nullable: true })
-  @Column({ nullable: true })
-  max_speed: number
+  @Column({ nullable: true, name: 'max_speed' })
+  maxSpeed: number
 
   @Field({ nullable: false })
   @Column({ nullable: false })
   year: number
 
   @Field({ nullable: true })
-  @Column({ nullable: true })
-  avg_fuel_consumption: number
+  @Column('float', { nullable: true, name: 'avg_fuel_consumption' })
+  avgFuelConsumption: number
 
   @Field({ nullable: false })
-  @Column({ nullable: false })
-  quantity_of_seats: number
+  @Column({ nullable: false, name: 'quantity_of_seats' })
+  quantityOfSeats: number
 
   @Field({ nullable: false })
-  @Column({ nullable: false })
-  gos_number: number
+  @Column({ nullable: false, name: 'gos_number' })
+  gosNumber: string
 
   @Field(() => TransportClassEntity, { nullable: true, name: 'classId' })
   @ManyToOne(
@@ -83,7 +83,6 @@ export class TransportEntity extends BaseEntity {
 
   @Field(() => TransportBodyTypesEntity, {
     nullable: true,
-    name: 'body_typeId',
   })
   @ManyToOne(
     () => TransportBodyTypesEntity,
@@ -141,10 +140,6 @@ export class TransportEntity extends BaseEntity {
   )
   transportStatusesEntity: TransportStatusesEntity
 
-  @Field(() => [OrderEntity], { nullable: true })
-  @OneToMany(() => OrderEntity, (orderEntity) => orderEntity.transportEntity)
-  orderEntities: OrderEntity[]
-
   @Field(() => [TransportCommentEntity], { nullable: false })
   @OneToMany(
     () => TransportCommentEntity,
@@ -152,19 +147,19 @@ export class TransportEntity extends BaseEntity {
   )
   transportCommentEntities: TransportCommentEntity[]
 
-  @Field(() => TransportDescriptionEntity, { nullable: false })
+  @Field(() => TransportDescriptionEntity, { nullable: true })
   @OneToOne(
     () => TransportDescriptionEntity,
     (transportDescriptionEntity) => transportDescriptionEntity.transportEntity,
   )
-  transportDescriptionEntity: TransportDescriptionEntity
+  transportDescriptionEntity?: TransportDescriptionEntity
 
-  @Field(() => [TransportScheduleEntity], { nullable: false })
+  @Field(() => [TransportScheduleEntity], { nullable: true })
   @OneToMany(
     () => TransportScheduleEntity,
     (transportScheduleEntity) => transportScheduleEntity.transportEntity,
   )
-  transportScheduleEntities: TransportScheduleEntity[]
+  transportScheduleEntities?: TransportScheduleEntity[]
 
   @Field(() => [LocationEntity], { nullable: 'itemsAndList' })
   @OneToMany(
@@ -172,4 +167,8 @@ export class TransportEntity extends BaseEntity {
     (locationEntity) => locationEntity.transportEntity,
   )
   locationEntities: LocationEntity[]
+
+  @Field(() => [OrderEntity], { nullable: true })
+  @OneToMany(() => OrderEntity, (orderEntity) => orderEntity.transportEntity)
+  orderEntities: OrderEntity[]
 }

@@ -26,6 +26,33 @@ input CreateOrderStatusInput {
   status: String!
 }
 
+input CreateTransportInput {
+  avgFuelConsumption: Float
+  capacity: Float
+  clearance: Float
+  gosNumber: String!
+  height: Float
+  length: Float
+  maxSpeed: Float
+  modification: String!
+  quantityOfSeats: Float!
+  tankCapacity: Float
+  transportBodyTypesEntityId: Float!
+  transportClassEntityId: Float
+  transportDescriptionEntityId: Float
+  transportEngineEntityId: Float!
+  transportLayoutEntityId: Float!
+  transportOilTypeEntityId: Float
+  transportScheduleEntitiesId: Float
+  transportStatusesEntityId: Float
+  transportTransmissionEntityId: Float
+  transportWheelFormulaEntityId: Float!
+  weight: Float
+  wheelbase: Float
+  width: Float
+  year: Float!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -44,6 +71,7 @@ type Mutation {
   createOrderServiceTypeEntity(type: String!): OrderServiceTypeEntity!
   createOrderStatusEntity(createOrderStatusInput: CreateOrderStatusInput!): OrderStatusEntity!
   createOrderTransportationTypeEntity(type: String!): OrderTransportationTypeEntity!
+  createTransportEntity(createTransportInput: CreateTransportInput!): TransportEntity!
   createUser(user: UserInput!): UserEntity!
   login(user: UserInput!): TokensInput!
   register(user: UserInput!): UserEntity!
@@ -51,11 +79,13 @@ type Mutation {
   removeOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   removeOrderStatusEntity(id: Float!): OrderStatusEntity!
   removeOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
+  removeTransportEntity(id: Float!): TransportEntity!
   removeUser(id: Float!): UserEntity!
   updateOrderEntity(updateOrderInput: UpdateOrderInput!): OrderEntity!
   updateOrderServiceTypeEntity(orderServiceTypeInput: UpdateOrderServiceTypeInput!): OrderServiceTypeEntity!
   updateOrderStatusEntity(updateOrderStatusInput: UpdateOrderStatusInput!): OrderStatusEntity!
   updateOrderTransportationTypeEntity(updateOrderTransportationTypeInput: UpdateOrderTransportationTypeInput!): OrderTransportationTypeEntity!
+  updateTransportEntity(updateTransportInput: UpdateTransportInput!): TransportEntity!
 }
 
 type OrderEntity {
@@ -97,11 +127,13 @@ type Query {
   getAllOrderServiceTypeEntity: [OrderServiceTypeEntity!]!
   getAllOrderStatusEntity: [OrderStatusEntity!]!
   getAllOrderTransportationTypeEntity: [OrderTransportationTypeEntity!]!
+  getAllTransportEntity: [TransportEntity!]!
   getAllUsers: [UserEntity!]!
   getOneOrderEntity(id: Float!): OrderEntity!
   getOneOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   getOneOrderStatusEntity(id: Float!): OrderStatusEntity!
   getOneOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
+  getOneTransportEntity(id: Float!): TransportEntity!
   updateToken: TokensInput!
   whoAmI: UserEntity!
 }
@@ -161,28 +193,28 @@ type TransportEngineEntity {
 }
 
 type TransportEntity {
-  avg_fuel_consumption: Float
-  body_typeId: TransportBodyTypesEntity
+  avgFuelConsumption: Float
   capacity: Float
   classId: TransportClassEntity
   clearance: Float
   createdAt: DateTime!
-  gos_number: Float!
+  gosNumber: String!
   height: Float
   id: ID!
   length: Float
   locationEntities: [LocationEntity]
-  max_speed: Float
+  maxSpeed: Float
   modification: String!
   orderEntities: [OrderEntity!]
-  quantity_of_seats: Float!
-  tank_capacity: Float
+  quantityOfSeats: Float!
+  tankCapacity: Float
+  transportBodyTypesEntity: TransportBodyTypesEntity
   transportCommentEntities: [TransportCommentEntity!]!
-  transportDescriptionEntity: TransportDescriptionEntity!
+  transportDescriptionEntity: TransportDescriptionEntity
   transportEngineEntity: TransportEngineEntity
   transportLayoutEntity: TransportLayoutEntity
   transportOilTypeEntity: TransportOilTypeEntity
-  transportScheduleEntities: [TransportScheduleEntity!]!
+  transportScheduleEntities: [TransportScheduleEntity!]
   transportStatusesEntity: TransportStatusesEntity!
   transportTransmissionEntity: TransportTransmissionEntity
   transportWheelFormulaEntity: TransportWheelFormulaEntity
@@ -262,6 +294,34 @@ input UpdateOrderStatusInput {
 input UpdateOrderTransportationTypeInput {
   id: ID!
   type: String!
+}
+
+input UpdateTransportInput {
+  avgFuelConsumption: Float
+  capacity: Float
+  clearance: Float
+  gosNumber: String!
+  height: Float
+  id: ID!
+  length: Float
+  maxSpeed: Float
+  modification: String!
+  quantityOfSeats: Float!
+  tankCapacity: Float
+  transportBodyTypesEntityId: Float!
+  transportClassEntityId: Float
+  transportDescriptionEntityId: Float
+  transportEngineEntityId: Float!
+  transportLayoutEntityId: Float!
+  transportOilTypeEntityId: Float
+  transportScheduleEntitiesId: Float
+  transportStatusesEntityId: Float
+  transportTransmissionEntityId: Float
+  transportWheelFormulaEntityId: Float!
+  weight: Float
+  wheelbase: Float
+  width: Float
+  year: Float!
 }
 
 type UserEntity {
