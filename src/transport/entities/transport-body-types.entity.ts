@@ -13,10 +13,10 @@ export class TransportBodyTypesEntity {
   @Column({ nullable: false })
   type: string
 
-  @Field(() => [TransportEntity], { nullable: false })
+  @Field(() => [TransportEntity], { nullable: 'itemsAndList' })
   @OneToMany(
     () => TransportEntity,
     (transportEntity) => transportEntity.transportBodyTypesEntity,
   )
-  transportEntities: TransportEntity[]
+  transportEntities?: TransportEntity[]
 }

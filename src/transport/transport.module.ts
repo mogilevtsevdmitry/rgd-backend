@@ -14,6 +14,8 @@ import { TransportTransmissionEntity } from './entities/transport-transmission.e
 import { TransportWheelFormulaEntity } from './entities/transport-wheel-formula.entity'
 import { TransportService } from './services/transport.service'
 import { TransportResolver } from './resolvers/transport.resolver'
+import { TransportBodyTypeService } from './services/transport-body-type.service'
+import { TransportBodyTypeResolver } from './resolvers/transport-body-type.resolver'
 
 @Module({
   imports: [
@@ -32,6 +34,11 @@ import { TransportResolver } from './resolvers/transport.resolver'
       TransportWheelFormulaEntity,
     ]),
   ],
-  providers: [TransportService, TransportResolver],
+  providers: [
+    TransportService,
+    TransportResolver,
+    TransportBodyTypeService,
+    TransportBodyTypeResolver,
+  ],
 })
 export class TransportModule {}
