@@ -15,14 +15,17 @@ scalar DateTime
 type Mutation {
   createOrderServiceTypeEntity(type: String!): OrderServiceTypeEntity!
   createOrderStatusEntity(createOrderStatusInput: CreateOrderStatusInput!): OrderStatusEntity!
+  createOrderTransportationTypeEntity(type: String!): OrderTransportationTypeEntity!
   createUser(user: UserInput!): UserEntity!
   login(user: UserInput!): TokensInput!
   register(user: UserInput!): UserEntity!
   removeOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   removeOrderStatusEntity(id: Float!): OrderStatusEntity!
+  removeOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
   removeUser(id: Float!): UserEntity!
   updateOrderServiceTypeEntity(orderServiceTypeInput: UpdateOrderServiceTypeInput!): OrderServiceTypeEntity!
   updateOrderStatusEntity(updateOrderStatusInput: UpdateOrderStatusInput!): OrderStatusEntity!
+  updateOrderTransportationTypeEntity(updateOrderTransportationTypeInput: UpdateOrderTransportationTypeInput!): OrderTransportationTypeEntity!
 }
 
 type OrderEntity {
@@ -55,16 +58,18 @@ type OrderStatusEntity {
 
 type OrderTransportationTypeEntity {
   id: ID!
-  orderEntities: [OrderEntity!]!
+  orderEntities: [OrderEntity]
   type: String!
 }
 
 type Query {
   getAllOrderServiceTypeEntity: [OrderServiceTypeEntity!]!
   getAllOrderStatusEntity: [OrderStatusEntity!]!
+  getAllOrderTransportationTypeEntity: [OrderTransportationTypeEntity!]!
   getAllUsers: [UserEntity!]!
   getOneOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   getOneOrderStatusEntity(id: Float!): OrderStatusEntity!
+  getOneOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
   updateToken: TokensInput!
   whoAmI: UserEntity!
 }
@@ -205,6 +210,11 @@ input UpdateOrderStatusInput {
   color: String = "#ffffff"
   id: ID!
   status: String!
+}
+
+input UpdateOrderTransportationTypeInput {
+  id: ID!
+  type: String!
 }
 
 type UserEntity {
