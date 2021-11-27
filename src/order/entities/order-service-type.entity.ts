@@ -9,12 +9,12 @@ export class OrderServiceTypeEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Field(() => [OrderEntity], { nullable: false })
+  @Field(() => [OrderEntity], { nullable: 'itemsAndList' })
   @OneToMany(
     () => OrderEntity,
     (orderEntity) => orderEntity.orderServiceTypeEntity,
   )
-  orderEntities: OrderEntity[]
+  orderEntities?: OrderEntity[]
 
   @Field({ nullable: false })
   @Column({ nullable: false })

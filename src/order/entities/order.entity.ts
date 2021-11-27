@@ -34,14 +34,14 @@ export class OrderEntity extends BaseEntity {
   )
   transportEntity: TransportEntity
 
-  @Field(() => OrderStatusEntity, { nullable: true })
+  @Field(() => OrderStatusEntity, { nullable: false })
   @ManyToOne(
     () => OrderStatusEntity,
     (orderStatusEntity) => orderStatusEntity.orderEntities,
   )
   orderStatusEntity: OrderStatusEntity
 
-  @Field(() => UserEntity, { nullable: true })
+  @Field(() => UserEntity, { nullable: false })
   @ManyToOne(() => UserEntity, (userEntity) => userEntity.orderEntities)
   userEntity: UserEntity
 
@@ -51,12 +51,12 @@ export class OrderEntity extends BaseEntity {
     (orderTransportationTypeEntity) =>
       orderTransportationTypeEntity.orderEntities,
   )
-  orderTransportationTypeEntity: OrderTransportationTypeEntity
+  orderTransportationTypeEntity?: OrderTransportationTypeEntity
 
-  @Field(() => [OrderServiceTypeEntity], { nullable: true })
+  @Field(() => [OrderServiceTypeEntity], { nullable: 'itemsAndList' })
   @ManyToOne(
     () => OrderServiceTypeEntity,
     (orderServiceTypeEntity) => orderServiceTypeEntity.id,
   )
-  orderServiceTypeEntity: OrderServiceTypeEntity
+  orderServiceTypeEntity?: OrderServiceTypeEntity
 }

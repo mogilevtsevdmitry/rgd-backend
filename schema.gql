@@ -8,17 +8,20 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
+  createOrderServiceTypeEntity(type: String!): OrderServiceTypeEntity!
   createUser(user: UserInput!): UserEntity!
   login(user: UserInput!): TokensInput!
   register(user: UserInput!): UserEntity!
+  removeOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   removeUser(id: Float!): UserEntity!
+  updateOrderServiceTypeEntity(orderServiceTypeInput: OrderServiceTypeInput!): OrderServiceTypeEntity!
 }
 
 type OrderEntity {
   createdAt: DateTime!
   id: ID!
-  orderServiceTypeEntity: [OrderServiceTypeEntity!]
-  orderStatusEntity: OrderStatusEntity
+  orderServiceTypeEntity: [OrderServiceTypeEntity]
+  orderStatusEntity: OrderStatusEntity!
   orderTransportationTypeEntity: OrderTransportationTypeEntity
   path: String!
   price: Float!
@@ -26,12 +29,17 @@ type OrderEntity {
   rating: Float!
   transportEntity: TransportEntity!
   updatedAt: DateTime!
-  userEntity: UserEntity
+  userEntity: UserEntity!
 }
 
 type OrderServiceTypeEntity {
   id: ID!
-  orderEntities: [OrderEntity!]!
+  orderEntities: [OrderEntity]
+  type: String!
+}
+
+input OrderServiceTypeInput {
+  id: ID!
   type: String!
 }
 
@@ -49,7 +57,9 @@ type OrderTransportationTypeEntity {
 }
 
 type Query {
+  getAllOrderServiceTypeEntity: [OrderServiceTypeEntity!]!
   getAllUsers: [UserEntity!]!
+  getOneOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   updateToken: TokensInput!
   whoAmI: UserEntity!
 }
