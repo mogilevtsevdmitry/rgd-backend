@@ -1,6 +1,6 @@
 import { BaseEntity } from '../../base/base.entity'
 import { Field, ObjectType } from '@nestjs/graphql'
-import { Column, Entity, ManyToOne } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'
 import { UserEntity } from '../../users/entities/user.entity'
 import { TransportEntity } from './transport.entity'
 
@@ -20,6 +20,7 @@ export class TransportCommentEntity extends BaseEntity {
     () => UserEntity,
     (userEntity) => userEntity.transportCommentEntities,
   )
+  @JoinColumn()
   userEntity: UserEntity
 
   @Field(() => TransportEntity)
@@ -27,5 +28,6 @@ export class TransportCommentEntity extends BaseEntity {
     () => TransportEntity,
     (transportEntity) => transportEntity.transportCommentEntities,
   )
+  @JoinColumn()
   transportEntity: TransportEntity
 }

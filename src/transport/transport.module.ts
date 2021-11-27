@@ -18,9 +18,13 @@ import { TransportBodyTypeService } from './services/transport-body-type.service
 import { TransportBodyTypeResolver } from './resolvers/transport-body-type.resolver'
 import { TransportClassService } from './services/transport-class.service'
 import { TransportClassResolver } from './resolvers/transport-class.resolver'
+import { TransportCommentService } from './services/transport-comment.service'
+import { TransportCommentResolver } from './resolvers/transport-comment.resolver'
+import { UserModule } from '../users/user.module'
 
 @Module({
   imports: [
+    UserModule,
     TypeOrmModule.forFeature([
       TransportEntity,
       TransportBodyTypesEntity,
@@ -43,6 +47,8 @@ import { TransportClassResolver } from './resolvers/transport-class.resolver'
     TransportBodyTypeResolver,
     TransportClassService,
     TransportClassResolver,
+    TransportCommentService,
+    TransportCommentResolver,
   ],
 })
 export class TransportModule {}
