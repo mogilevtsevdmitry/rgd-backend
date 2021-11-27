@@ -6,6 +6,8 @@ import { OrderStatusEntity } from './entities/order-status.entity'
 import { OrderTransportationTypeEntity } from './entities/order-transportation-type.entity'
 import { OrderServiceTypeService } from './services/order-service-type.service'
 import { OrderServiceTypeResolver } from './resolvers/order-service-type.resolver'
+import { OrderStatusService } from './services/order-status.service'
+import { OrderStatusResolver } from './resolvers/order-status.resolver'
 
 @Module({
   imports: [
@@ -16,7 +18,12 @@ import { OrderServiceTypeResolver } from './resolvers/order-service-type.resolve
       OrderTransportationTypeEntity,
     ]),
   ],
-  providers: [OrderServiceTypeService, OrderServiceTypeResolver],
+  providers: [
+    OrderServiceTypeService,
+    OrderStatusService,
+    OrderServiceTypeResolver,
+    OrderStatusResolver,
+  ],
   exports: [OrderServiceTypeService],
 })
 export class OrderModule {}

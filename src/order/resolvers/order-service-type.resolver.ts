@@ -19,7 +19,8 @@ export class OrderServiceTypeResolver {
 
   @Mutation(() => OrderServiceTypeEntity)
   async updateOrderServiceTypeEntity(
-    @Args('orderServiceTypeInput') orderServiceTypeInput: UpdateOrderServiceTypeInput,
+    @Args('orderServiceTypeInput')
+    orderServiceTypeInput: UpdateOrderServiceTypeInput,
   ): Promise<OrderServiceTypeEntity> {
     return await this.service.update(orderServiceTypeInput)
   }

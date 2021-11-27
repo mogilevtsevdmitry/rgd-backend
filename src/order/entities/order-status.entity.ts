@@ -9,15 +9,15 @@ export class OrderStatusEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Field(() => [OrderEntity], { nullable: false })
+  @Field(() => [OrderEntity], { nullable: 'itemsAndList' })
   @OneToMany(() => OrderEntity, (orderEntity) => orderEntity.orderStatusEntity)
   orderEntities: OrderEntity[]
 
   @Field({ nullable: false })
   @Column({ nullable: false })
-  type: string
+  status: string
 
-  @Field({ nullable: false, defaultValue: '#fff' })
-  @Column({ nullable: false, default: '#fff' })
-  color: string
+  @Field({ nullable: true, defaultValue: '#ffffff' })
+  @Column({ nullable: true, default: '#ffffff' })
+  color?: string
 }

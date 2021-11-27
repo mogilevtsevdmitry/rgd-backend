@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateOrderStatusInput {
+  color: String
+  status: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -9,12 +14,15 @@ scalar DateTime
 
 type Mutation {
   createOrderServiceTypeEntity(type: String!): OrderServiceTypeEntity!
+  createOrderStatusEntity(createOrderStatusInput: CreateOrderStatusInput!): OrderStatusEntity!
   createUser(user: UserInput!): UserEntity!
   login(user: UserInput!): TokensInput!
   register(user: UserInput!): UserEntity!
   removeOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
+  removeOrderStatusEntity(id: Float!): OrderStatusEntity!
   removeUser(id: Float!): UserEntity!
-  updateOrderServiceTypeEntity(orderServiceTypeInput: OrderServiceTypeInput!): OrderServiceTypeEntity!
+  updateOrderServiceTypeEntity(orderServiceTypeInput: UpdateOrderServiceTypeInput!): OrderServiceTypeEntity!
+  updateOrderStatusEntity(updateOrderStatusInput: UpdateOrderStatusInput!): OrderStatusEntity!
 }
 
 type OrderEntity {
@@ -38,16 +46,11 @@ type OrderServiceTypeEntity {
   type: String!
 }
 
-input OrderServiceTypeInput {
-  id: ID!
-  type: String!
-}
-
 type OrderStatusEntity {
-  color: String!
+  color: String
   id: ID!
-  orderEntities: [OrderEntity!]!
-  type: String!
+  orderEntities: [OrderEntity]
+  status: String!
 }
 
 type OrderTransportationTypeEntity {
@@ -58,8 +61,10 @@ type OrderTransportationTypeEntity {
 
 type Query {
   getAllOrderServiceTypeEntity: [OrderServiceTypeEntity!]!
+  getAllOrderStatusEntity: [OrderStatusEntity!]!
   getAllUsers: [UserEntity!]!
   getOneOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
+  getOneOrderStatusEntity(id: Float!): OrderStatusEntity!
   updateToken: TokensInput!
   whoAmI: UserEntity!
 }
@@ -189,6 +194,17 @@ type TransportWheelFormulaEntity {
   id: ID!
   title: String!
   transportEntities: [TransportEntity!]!
+}
+
+input UpdateOrderServiceTypeInput {
+  id: ID!
+  type: String!
+}
+
+input UpdateOrderStatusInput {
+  color: String = "#ffffff"
+  id: ID!
+  status: String!
 }
 
 type UserEntity {
