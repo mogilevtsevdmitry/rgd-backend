@@ -14,9 +14,11 @@ import { OrderService } from './services/order.service'
 import { OrderResolver } from './resolvers/order.resolver'
 import { LocationEntity } from './entities/location.entity'
 import { LocationService } from './services/location.service'
+import { TransportModule } from '../transport/transport.module'
 
 @Module({
   imports: [
+    TransportModule,
     TypeOrmModule.forFeature([
       OrderEntity,
       OrderServiceTypeEntity,

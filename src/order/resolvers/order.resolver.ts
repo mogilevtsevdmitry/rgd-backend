@@ -5,6 +5,8 @@ import { OrderService } from '../services/order.service'
 import { OrderEntity } from '../entities/order.entity'
 import { CreateOrderInput } from '../inputs/create-order.input'
 import { UpdateOrderInput } from '../inputs/update-order.input'
+import { CurrentUser } from '../../auth/decorators/current-user.decorator'
+import { UserEntity } from '../../users/entities/user.entity'
 
 @UseGuards(GqlAuthGuard)
 @Resolver('Order')
@@ -15,8 +17,9 @@ export class OrderResolver {
   async createOrderEntity(
     @Args('createOrderInput')
     createOrderInput: CreateOrderInput,
+    @CurrentUser() userEntity: UserEntity,
   ): Promise<OrderEntity> {
-    return await this.service.create(createOrderInput)
+    return await this.service.create(createOrderInput, userEntity)
   }
 
   @Mutation(() => OrderEntity)
