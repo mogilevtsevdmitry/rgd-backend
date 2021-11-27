@@ -6,7 +6,7 @@ import { CreateOrderStatusInput } from '../inputs/create-order-status.input'
 import { UpdateOrderStatusInput } from '../inputs/update-order-status.input'
 import { OrderStatusEntity } from '../entities/order-status.entity'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('OrderStatus')
 export class OrderStatusResolver {
   constructor(private readonly service: OrderStatusService) {}

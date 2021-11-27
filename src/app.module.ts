@@ -27,7 +27,7 @@ import { OrderModule } from './order/order.module'
         cors: {
           origin: `${configService.get<string>(
             'MAIN_HOST',
-          )}${configService.get<string>('API_PORT')}`,
+          )}${configService.get<string>('CLIENT_PORT')}`,
           credentials: true,
         },
         context: ({ req, res }) => ({ req, res }),

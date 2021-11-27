@@ -190,6 +190,7 @@ type Token {
 type TokensInput {
   accessToken: Token!
   refreshToken: Token!
+  user: UserRes!
 }
 
 type TransportBodyTypesEntity {
@@ -408,4 +409,9 @@ type UserEntity {
 input UserInput {
   email: String!
   password: String!
+}
+
+type UserRes {
+  email: String!
+  role: String!
 }

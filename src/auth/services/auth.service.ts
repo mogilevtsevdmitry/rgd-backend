@@ -41,7 +41,14 @@ export class AuthService {
       )
     }
     const payload: IPayload = { email: user.email, userId: user.id }
-    return await this.generateTokens(payload)
+    const tokens = await this.generateTokens(payload)
+    return {
+      ...tokens,
+      user: {
+        email: user.email,
+        role: user.roles,
+      },
+    }
   }
 
   async register({ email, password }: UserInput): Promise<UserEntity> {
@@ -106,6 +113,10 @@ export class AuthService {
       refreshToken: {
         token: refreshToken.token,
         exp: refreshToken.exp,
+      },
+      user: {
+        email: user.email,
+        role: user.roles,
       },
     }
   }

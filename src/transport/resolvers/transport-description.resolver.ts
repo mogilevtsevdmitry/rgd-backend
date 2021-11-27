@@ -7,7 +7,7 @@ import { TransportDescriptionEntity } from '../entities/transport-description.en
 import { CreateTransportDescriptionInput } from '../inputs/create-transport-description.input'
 import { UpdateTransportDescriptionInput } from '../inputs/update-transport-description.input'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('TransportDescription')
 export class TransportDescriptionResolver {
   constructor(private readonly service: TransportDescriptionService) {}

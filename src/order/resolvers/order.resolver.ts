@@ -8,7 +8,7 @@ import { UpdateOrderInput } from '../inputs/update-order.input'
 import { CurrentUser } from '../../auth/decorators/current-user.decorator'
 import { UserEntity } from '../../users/entities/user.entity'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('Order')
 export class OrderResolver {
   constructor(private readonly service: OrderService) {}

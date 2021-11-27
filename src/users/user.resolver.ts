@@ -7,7 +7,7 @@ import { UserService } from './user.service'
 import { UserInput } from './user.input'
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('Users')
 export class UserResolver {
   constructor(private readonly userService: UserService) {}

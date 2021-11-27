@@ -8,7 +8,7 @@ import { UpdateTransportCommentInput } from '../inputs/update-transport-comment.
 import { CurrentUser } from '../../auth/decorators/current-user.decorator'
 import { UserEntity } from '../../users/entities/user.entity'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('TransportComment')
 export class TransportCommentResolver {
   constructor(private readonly service: TransportCommentService) {}

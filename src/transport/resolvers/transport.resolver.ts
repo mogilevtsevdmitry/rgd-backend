@@ -6,7 +6,7 @@ import { TransportEntity } from '../entities/transport.entity'
 import { CreateTransportInput } from '../inputs/create-transport.input'
 import { UpdateTransportInput } from '../inputs/update-transport.input'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('Transport')
 export class TransportResolver {
   constructor(private readonly service: TransportService) {}

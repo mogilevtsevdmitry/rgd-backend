@@ -6,7 +6,7 @@ import { TransportClassService } from '../services/transport-class.service'
 import { CreateTransportClassInput } from '../inputs/create-transport-class.input'
 import { UpdateTransportClassInput } from '../inputs/update-transport-class.input'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('TransportClass')
 export class TransportClassResolver {
   constructor(private readonly service: TransportClassService) {}

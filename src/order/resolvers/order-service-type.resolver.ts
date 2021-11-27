@@ -5,7 +5,7 @@ import { OrderServiceTypeService } from '../services/order-service-type.service'
 import { OrderServiceTypeEntity } from '../entities/order-service-type.entity'
 import { UpdateOrderServiceTypeInput } from '../inputs/update-order-service-type.input'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('OrderServiceType')
 export class OrderServiceTypeResolver {
   constructor(private readonly service: OrderServiceTypeService) {}

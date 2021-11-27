@@ -1,4 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql'
+import { ROLE } from '../../users/entities/user.entity'
 
 @ObjectType()
 export class Token {
@@ -7,7 +8,15 @@ export class Token {
 }
 
 @ObjectType()
+export class UserRes {
+  @Field() email: string
+  @Field({ defaultValue: ROLE.USER })
+  role: ROLE
+}
+
+@ObjectType()
 export class TokensInput {
   @Field() accessToken: Token
   @Field() refreshToken: Token
+  @Field() user: UserRes
 }

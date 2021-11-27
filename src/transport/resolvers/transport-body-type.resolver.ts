@@ -6,7 +6,7 @@ import { TransportBodyTypesEntity } from '../entities/transport-body-types.entit
 import { CreateTransportBodyTypeInput } from '../inputs/create-transport-body-type.input'
 import { UpdateTransportBodyTypeInput } from '../inputs/update-transport-body-type.input'
 
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 @Resolver('TransportBodyType')
 export class TransportBodyTypeResolver {
   constructor(private readonly service: TransportBodyTypeService) {}
