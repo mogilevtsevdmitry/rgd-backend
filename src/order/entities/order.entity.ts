@@ -1,11 +1,12 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { Column, Entity, Index, ManyToOne } from 'typeorm'
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm'
 import { BaseEntity } from '../../base/base.entity'
 import { OrderStatusEntity } from './order-status.entity'
 import { UserEntity } from '../../users/entities/user.entity'
 import { OrderTransportationTypeEntity } from './order-transportation-type.entity'
 import { OrderServiceTypeEntity } from './order-service-type.entity'
 import { TransportEntity } from '../../transport/entities/transport.entity'
+import { LocationEntity } from './location.entity'
 
 @ObjectType()
 @Entity('orders')
@@ -17,11 +18,6 @@ export class OrderEntity extends BaseEntity {
   @Field({ nullable: false })
   @Column({ nullable: false })
   qualityOfSeats: number
-
-  @Field({ nullable: false })
-  @Index({ spatial: true })
-  @Column('point')
-  path: string
 
   @Field({ nullable: false })
   @Column('float', { nullable: false })
@@ -53,10 +49,17 @@ export class OrderEntity extends BaseEntity {
   )
   orderTransportationTypeEntity?: OrderTransportationTypeEntity
 
-  @Field(() => [OrderServiceTypeEntity], { nullable: 'itemsAndList' })
+  @Field(() => OrderServiceTypeEntity, { nullable: true })
   @ManyToOne(
     () => OrderServiceTypeEntity,
     (orderServiceTypeEntity) => orderServiceTypeEntity.id,
   )
   orderServiceTypeEntity?: OrderServiceTypeEntity
+
+  @Field(() => [LocationEntity], { nullable: 'itemsAndList' })
+  @OneToMany(
+    () => LocationEntity,
+    (locationEntity) => locationEntity.orderEntity,
+  )
+  locationEntities?: LocationEntity[]
 }

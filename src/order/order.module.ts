@@ -10,6 +10,10 @@ import { OrderStatusService } from './services/order-status.service'
 import { OrderStatusResolver } from './resolvers/order-status.resolver'
 import { OrderTransportationTypeService } from './services/order-transportation-type.service'
 import { OrderTransportationTypeResolver } from './resolvers/order-transportation-type.resolver'
+import { OrderService } from './services/order.service'
+import { OrderResolver } from './resolvers/order.resolver'
+import { LocationEntity } from './entities/location.entity'
+import { LocationService } from './services/location.service'
 
 @Module({
   imports: [
@@ -18,16 +22,19 @@ import { OrderTransportationTypeResolver } from './resolvers/order-transportatio
       OrderServiceTypeEntity,
       OrderStatusEntity,
       OrderTransportationTypeEntity,
+      LocationEntity,
     ]),
   ],
   providers: [
     OrderServiceTypeService,
     OrderStatusService,
     OrderTransportationTypeService,
+    OrderService,
     OrderServiceTypeResolver,
     OrderStatusResolver,
     OrderTransportationTypeResolver,
+    OrderResolver,
+    LocationService,
   ],
-  exports: [OrderServiceTypeService],
 })
 export class OrderModule {}

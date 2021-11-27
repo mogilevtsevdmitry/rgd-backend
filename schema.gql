@@ -2,6 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateLocationInput {
+  geoLan: Float!
+  geoLon: Float!
+  orderEntityId: Float
+  transportEntityId: Float
+}
+
+input CreateOrderInput {
+  locationEntity: [CreateLocationInput!]!
+  orderServiceTypeEntityId: Float
+  orderStatusEntityId: Float!
+  orderTransportationTypeEntityId: Float
+  price: Float!
+  qualityOfSeats: Float!
+  rating: Float = 5
+  transportEntityId: Float!
+  userEntityId: Float!
+}
+
 input CreateOrderStatusInput {
   color: String
   status: String!
@@ -12,17 +31,28 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type LocationEntity {
+  geoLan: Float!
+  geoLon: Float!
+  id: ID!
+  orderEntity: OrderEntity
+  transportEntity: TransportEntity
+}
+
 type Mutation {
+  createOrderEntity(createOrderInput: CreateOrderInput!): OrderEntity!
   createOrderServiceTypeEntity(type: String!): OrderServiceTypeEntity!
   createOrderStatusEntity(createOrderStatusInput: CreateOrderStatusInput!): OrderStatusEntity!
   createOrderTransportationTypeEntity(type: String!): OrderTransportationTypeEntity!
   createUser(user: UserInput!): UserEntity!
   login(user: UserInput!): TokensInput!
   register(user: UserInput!): UserEntity!
+  removeOrderEntity(id: Float!): OrderEntity!
   removeOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   removeOrderStatusEntity(id: Float!): OrderStatusEntity!
   removeOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
   removeUser(id: Float!): UserEntity!
+  updateOrderEntity(updateOrderInput: UpdateOrderInput!): OrderEntity!
   updateOrderServiceTypeEntity(orderServiceTypeInput: UpdateOrderServiceTypeInput!): OrderServiceTypeEntity!
   updateOrderStatusEntity(updateOrderStatusInput: UpdateOrderStatusInput!): OrderStatusEntity!
   updateOrderTransportationTypeEntity(updateOrderTransportationTypeInput: UpdateOrderTransportationTypeInput!): OrderTransportationTypeEntity!
@@ -31,10 +61,10 @@ type Mutation {
 type OrderEntity {
   createdAt: DateTime!
   id: ID!
-  orderServiceTypeEntity: [OrderServiceTypeEntity]
+  locationEntities: [LocationEntity]
+  orderServiceTypeEntity: OrderServiceTypeEntity
   orderStatusEntity: OrderStatusEntity!
   orderTransportationTypeEntity: OrderTransportationTypeEntity
-  path: String!
   price: Float!
   qualityOfSeats: Float!
   rating: Float!
@@ -63,10 +93,12 @@ type OrderTransportationTypeEntity {
 }
 
 type Query {
+  getAllOrderEntity: [OrderEntity!]!
   getAllOrderServiceTypeEntity: [OrderServiceTypeEntity!]!
   getAllOrderStatusEntity: [OrderStatusEntity!]!
   getAllOrderTransportationTypeEntity: [OrderTransportationTypeEntity!]!
   getAllUsers: [UserEntity!]!
+  getOneOrderEntity(id: Float!): OrderEntity!
   getOneOrderServiceTypeEntity(id: Float!): OrderServiceTypeEntity!
   getOneOrderStatusEntity(id: Float!): OrderStatusEntity!
   getOneOrderTransportationTypeEntity(id: Float!): OrderTransportationTypeEntity!
@@ -139,6 +171,7 @@ type TransportEntity {
   height: Float
   id: ID!
   length: Float
+  locationEntities: [LocationEntity]
   max_speed: Float
   modification: String!
   orderEntities: [OrderEntity!]
@@ -199,6 +232,20 @@ type TransportWheelFormulaEntity {
   id: ID!
   title: String!
   transportEntities: [TransportEntity!]!
+}
+
+input UpdateLocationInput {
+  geoLan: Float!
+  geoLon: Float!
+  id: ID!
+}
+
+input UpdateOrderInput {
+  id: ID!
+  price: Float!
+  qualityOfSeats: Float!
+  rating: Float = 5
+  updateLocationInput: UpdateLocationInput!
 }
 
 input UpdateOrderServiceTypeInput {

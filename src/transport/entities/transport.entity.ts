@@ -13,6 +13,7 @@ import { OrderEntity } from '../../order/entities/order.entity'
 import { TransportCommentEntity } from './transport-comment.entity'
 import { TransportDescriptionEntity } from './transport-description.entity'
 import { TransportScheduleEntity } from './transport-schedule.entity'
+import { LocationEntity } from '../../order/entities/location.entity'
 
 @ObjectType()
 @Entity('transports')
@@ -164,4 +165,11 @@ export class TransportEntity extends BaseEntity {
     (transportScheduleEntity) => transportScheduleEntity.transportEntity,
   )
   transportScheduleEntities: TransportScheduleEntity[]
+
+  @Field(() => [LocationEntity], { nullable: 'itemsAndList' })
+  @OneToMany(
+    () => LocationEntity,
+    (locationEntity) => locationEntity.transportEntity,
+  )
+  locationEntities: LocationEntity[]
 }
